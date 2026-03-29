@@ -22,11 +22,13 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":/io.github.alamahant.Ermis.png"));
 
-    PingDialog* pingDialog = new PingDialog();
-    pingDialog->show();
+    QWidget parent;
+
+    PingDialog* pingDialog = new PingDialog(&parent);
+    pingDialog->setAttribute(Qt::WA_DeleteOnClose);  // Deletes itself when closed
     pingDialog->setWindowIcon(QIcon(":/io.github.alamahant.Ermis.png"));
 
     pingDialog->show();
-    
+
     return a.exec();
 }
