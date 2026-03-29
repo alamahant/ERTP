@@ -9,6 +9,7 @@ HTTPStegEngine::HTTPStegEngine(QObject *parent) : QObject(parent){
             certPath = Constants::sslPath + "/stegserver.crt";
             keyPath  = Constants::sslPath + "/stegserver.key";
             ensureSelfSignedCert(certPath, keyPath, "mystegserver");
+
 }
 
 HTTPStegEngine::~HTTPStegEngine() {
@@ -176,8 +177,10 @@ void HTTPStegEngine::ensureSelfSignedCert(const QString &certPath, const QString
     QFile cert(certPath);
     QFile key(keyPath);
     if (cert.exists() && key.exists()) {
+        qDebug() << "[HTTPStegEngine] SSL certificate and key already exist:" << certPath << keyPath;
         return;
     }
+    qDebug() << "[HTTPStegEngine] Generating self-signed SSL cert/key via OpenSSL...";
     QStringList args;
     args << "req" << "-x509"
          << "-newkey" << "rsa:2048"
@@ -194,6 +197,7 @@ void HTTPStegEngine::ensureSelfSignedCert(const QString &certPath, const QString
     }
     QByteArray err = proc.readAllStandardError();
     if (proc.exitCode() == 0) {
+        qDebug() << "[HTTPStegEngine] OpenSSL cert/key generated.";
     } else {
         qWarning() << "[HTTPStegEngine] OpenSSL failed:" << err;
     }

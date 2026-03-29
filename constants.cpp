@@ -3,11 +3,7 @@
 namespace Constants {
 
 
-#ifndef FLATPAK_BUILD
-const QString appDirPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/Ermis";
-#else
-const QString appDirPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-#endif
+const QString appDirPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/ERTP";
 
 
 const QString imagesPath = appDirPath + "/carriers";
@@ -15,9 +11,9 @@ const QString fusedImagesPath = appDirPath + "/fused";
 const QString extractedImagesPath = appDirPath + "/extracted";
 const QString picturesPath = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
 const QString musicPath = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
-const QString receivedICMPPath = appDirPath + "/Network";
-const QString ermistmpPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/Ermis";
-const QString sslPath = appDirPath + "/.ssl";
+ const QString receivedICMPPath = appDirPath + "/ICMP";
+ const QString ermistmpPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/ERTP";
+ const QString sslPath = appDirPath + "/.ssl";
 
 bool isCameraOn = false;
 
